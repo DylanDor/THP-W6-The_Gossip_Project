@@ -1,0 +1,22 @@
+<%= @city.name %><br><%= @city.zip_code %>
+
+<div class="d-flex flex-wrap justify-content-center">
+    <% @gossips.reverse_each do |gossip| %>
+        <div class=" p-3  bg-body rounded border-bottom" style="width: 90%;">
+            <div class="card-body row align-items-center">
+                <div class="col-3">
+                    <h5 class= "card-title"><%= gossip.title %></h5>
+                </div>
+                <div class="col">
+                    <p class="card-text"><%= gossip.content %></p>
+                </div>
+                <div class="col-2">
+                    <%= link_to "#{gossip.user.first_name}", user_path(gossip.user.id), :class => "card-text" %>
+                </div>
+                <div class="col-2 d-flex justify-content-end">
+                    <%= link_to "Voir plus", gossip_path(gossip.id), :class => "btn btn-outline-dark" %>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>

@@ -1,0 +1,18 @@
+<div class="card m-2" style="width: 18rem;">
+    <div class="card-header">
+        <h5 class= "card-title"><%= @gossip.title %></h5>
+    </div>
+    <div class="card-body">
+        <p class="card-text"><%= @gossip.content %></p>
+        <p class="card-text"><%= @gossip.user.first_name %></p>
+        <p class="card-text"><%= @gossip.user.city.name %></p>
+    </div>
+    <%= button_to 'supp', gossip_path(@gossip), method: :delete %>
+</div>
+
+
+<div class="d-flex flex-wrap justify-content-center">
+    <%= @comments.reverse_each do |comment| %>
+        <p><%= comment.content %></p><br>
+        <p><%= comment.user.first_name %></p><br>
+    <% end %>
