@@ -1,0 +1,59 @@
+
+<div class="bg-image position-relative" style="background-image: url('https://i.pinimg.com/originals/35/f5/da/35f5dac58f756949d071f713311ed9ed.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; height: 300px; width: 100%;">
+    <img src="https://content-us.teletubbies.com/uploads/2016/03/tinky-winky.png" alt="twbs" width="160" height="160" class="rounded-circle position-absolute top-100 translate-middle border border-light border-3" style= "left: 10%">
+</div>
+<div style = "height: 100px"></div>
+<div class= "container-fluid">
+    <div class= "row">
+        <div class= "col-2">
+            <ul class="list-group list-group-flush bg-light">
+                <li class="list-group-item bg-light">
+                    <small>Nom :</small><br>
+                    <h6><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h6>
+                </li>
+                <li class="list-group-item bg-light">
+                    <small>Age :</small><br>
+                    <%= @user.age %> ans
+                </li>
+                <li class="list-group-item bg-light">
+                    <small>Ville :</small><br>
+                    <%= @user.city.name %>
+                </li>
+                <li class="list-group-item bg-light">
+                    <small>Création le :</small><br>
+                    <%= @user.created_at %>
+                </li>
+                <li class="list-group-item bg-light">
+                    <small>Nombres de potins :</small><br>
+                    <%= @gossips.length %>
+                </li>
+            </ul>
+        </div>
+        <div class= "col-10">
+            <% @gossips.reverse_each do |gossip| %>
+
+                <div class="list-group ">
+                    <%= link_to gossip_path(gossip.id), :class => "list-group-item list-group-item-action py-3 bg-light" do %>
+                    <div class="d-flex mb-2 align-items-center gap-2">
+                    <img src="https://content-us.teletubbies.com/uploads/2016/03/tinky-winky.png" alt="twbs" width="32" height="32" class="rounded-circle">
+                    <object>
+                        <h6><%= link_to "#{gossip.user.first_name.capitalize}", user_path(gossip.user.id), :class => "fw-bold text-dark text-decoration-none" %></h6>
+                    </object>
+                    </div>
+                    <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                            <h6 class="mb-0"><%= gossip.title %></h6>
+                            <p class="mb-0 opacity-75"><%= gossip.content %></p>
+                        </div>
+                        <div class= "d-flex flex-column align-items-end">
+                            <small class="opacity-50 text-nowrap"><%= gossip.created_at %></small>
+                            <small class="opacity-50 text-nowrap">Posté depuis : <%= gossip.user.city.name %></small>
+                        </div>
+                    </div>
+                    <% end %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+
+</div>

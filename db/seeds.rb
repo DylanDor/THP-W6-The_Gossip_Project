@@ -20,10 +20,12 @@ end
 10.times do
     User.create!(
         first_name: Faker::Games::Pokemon.name,
-        last_name: Faker::Name.last_name, description: Faker::Games::Pokemon.move,
+        last_name: Faker::Name.last_name,
+        description: Faker::Games::Pokemon.move,
         email: Faker::Internet.email,
         age: Faker::Number.between(from: 7, to: 77),
-        city_id: City.all.sample.id
+        city_id: City.all.sample.id,
+        password: Faker::Games::Pokemon.name
     )
 end
 

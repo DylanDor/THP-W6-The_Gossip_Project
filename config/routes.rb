@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :gossip
-  resources :user
+  resources :users
   resources :city, only: [:show]
+  resources :sessions
 
   root 'gossip#index'
   get '/contact', to: 'contact#contact'

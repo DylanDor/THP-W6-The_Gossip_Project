@@ -5,42 +5,27 @@
 
     </div>
 <% end %>
-<div class="d-flex flex-wrap justify-content-center">
-    <div class="p-3 mt-5 bg-body border-bottom" style="width: 90%;">
-        <div class="card-body row align-items-center">
-            <div class="col-3">
-                <h5 class= "card-title">Titre</h5>
-            </div>
-            <div class="col">
-                <p class="card-text">Gossip</p>
-            </div>
-            <div class="col-2">
-                <p class="card-text">Auteur</p>
-            </div>
-            <div class="col-2 d-flex justify-content-end">
-                <%= link_to "Nouveau", new_gossip_path, :class => "btn btn-success" %>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="d-flex flex-wrap justify-content-center">
-    <% @gossips.reverse_each do |gossip| %>
-        <div class=" p-3  bg-body rounded border-bottom" style="width: 90%;">
-            <div class="card-body row align-items-center">
-                <div class="col-3">
-                    <h5 class= "card-title"><%= gossip.title %></h5>
-                </div>
-                <div class="col">
-                    <p class="card-text"><%= gossip.content %></p>
-                </div>
-                <div class="col-2">
-                    <%= link_to "#{gossip.user.first_name}", user_path(gossip.user.id), :class => "card-text" %>
-                </div>
-                <div class="col-2 d-flex justify-content-end">
-                    <%= link_to "Voir plus", gossip_path(gossip.id), :class => "btn btn-outline-dark" %>
-                </div>
+<% @gossips.reverse_each do |gossip| %>
+
+    <div class="list-group ">
+        <%= link_to gossip_path(gossip.id), :class => "list-group-item list-group-item-action py-3 bg-light" do %>
+        <div class="d-flex mb-2 align-items-center gap-2">
+        <img src="https://content-us.teletubbies.com/uploads/2016/03/tinky-winky.png" alt="twbs" width="32" height="32" class="rounded-circle">
+        <object>
+            <h6><%= link_to "#{gossip.user.first_name.capitalize}", user_path(gossip.user.id), :class => "fw-bold text-dark text-decoration-none" %></h6>
+        </object>
+        </div>
+        <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+                <h6 class="mb-0"><%= gossip.title %></h6>
+                <p class="mb-0 opacity-75"><%= gossip.content %></p>
+            </div>
+            <div class= "d-flex flex-column align-items-end">
+                <small class="opacity-50 text-nowrap"><%= gossip.created_at %></small>
+                <small class="opacity-50 text-nowrap">Posté depuis : <%= gossip.user.city.name %></small>
             </div>
         </div>
-    <% end %>
-</div>
+        <% end %>
+    </div>
+<% end %>

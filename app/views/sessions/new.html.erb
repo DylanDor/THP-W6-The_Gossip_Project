@@ -1,0 +1,23 @@
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class= "text-center">
+        <h2>Bonjour !</h2>
+        <%= form_with url: "/sessions", method: :post do |f| %>
+            <div class="m-3 ">
+                <label>Email</label>
+                <%= f.text_field :email, class:'form-control'%>
+            </div>
+            <div class="m-3 ">
+                <label>Mot de passe</label>
+                <%= f.password_field :password, class:'form-control'%>
+            </div>
+            <div class="">
+                <button type="submit" class="btn btn-lg btn-primary mt-2">Connexion</button>
+            </div>
+
+        <% end %>
+        <div class= "mt-5">
+            <p>Pas encore de compte ?</p>
+            <%= link_to "Crée un compte", new_user_path, :class => "btn btn-outline-dark" %>
+        </div>
+    </div> 
+</div>

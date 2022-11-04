@@ -1,0 +1,34 @@
+<div class= "text-center">
+    <%= form_for @user do |f| %>
+        <h2>Création de compte</h2>
+        <div class="m-3 ">
+            <label>Prénom</label>
+            <%= f.text_field :first_name, class:'form-control'%>
+        </div>
+        <div class="m-3">
+            <label>Nom</label>
+            <%= f.text_field :last_name, class:'form-control'%>
+        </div>
+        <div class="m-3">
+            <label>Age</label>
+            <%= f.number_field :age, in:18..99, class:'form-control'%>
+        </div>
+        <div class="m-3">
+        <label>Ville</label><br>
+        <%= f.collection_select :city_id, @cities, :id, :name,{}, class:'form-control' %>
+        </div>
+        <div class="m-3">
+            <label>Email</label>
+            <%= f.text_field :email, class:'form-control'%>
+        </div>
+        <div class="m-3">
+            <label>Mot de passe</label>
+            <%= f.password_field :password, class:'form-control'%>
+            <label>Confirmer</label>
+            <%= f.password_field :password_confirmation, class:'form-control'%>
+        </div>
+        <div class="">
+            <button type="submit" class="btn btn-lg btn-primary mt-3">Inscription</button>
+        </div>
+    <% end %>
+</div> 

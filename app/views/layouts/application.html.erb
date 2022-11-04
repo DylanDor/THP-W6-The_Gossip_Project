@@ -8,28 +8,61 @@
 
     <%= stylesheet_link_tag "application"%>
     <%= javascript_include_tag "application", defer: true %>
+    
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark px-5">
-        <a class="navbar-brand text-white" href="#">The Gossip Project</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <%= link_to "Accueil", "/", :class => "nav-link text-white" %>
-                </li>
-                <li class="nav-item active">
-                    <%= link_to "L'équipe", "/equipe", :class => "nav-link text-white" %>
-                </li>
-                <li class="nav-item">
-                    <%= link_to "Contact", "/contact", :class => "nav-link text-white" %>
-                </li>
-            </ul>
+    <main class="container-fluid">
+      <div class= "row">
+        <div class="text-bg-dark vh-100 sticky-top col-2">
+          <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none" href="/"><span class="fs-4">The Gossip Project</span></a>
+          <hr>
+          <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+              <a href="/" class="btn btn-dark" aria-current="page">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16"><path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"/></svg>
+                Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/equipe" class="btn btn-dark" aria-current="page">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-sunglasses-fill" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zM2.31 5.243A1 1 0 0 1 3.28 4H6a1 1 0 0 1 1 1v.116A4.22 4.22 0 0 1 8 5c.35 0 .69.04 1 .116V5a1 1 0 0 1 1-1h2.72a1 1 0 0 1 .97 1.243l-.311 1.242A2 2 0 0 1 11.439 8H11a2 2 0 0 1-1.994-1.839A2.99 2.99 0 0 0 8 6c-.393 0-.74.064-1.006.161A2 2 0 0 1 5 8h-.438a2 2 0 0 1-1.94-1.515L2.31 5.243zM4.969 9.75A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .866-.5z"/></svg>
+                L'équipe
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/contact" class="btn btn-dark" aria-current="page">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-heart-fill" viewBox="0 0 16 16"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555l-4.2 2.568a2.785 2.785 0 0 0-.051-.105c-.666-1.3-2.363-1.917-3.699-1.25-1.336-.667-3.033-.05-3.699 1.25l-.05.105L.05 3.555ZM11.584 8.91a4.694 4.694 0 0 1-.073.139L16 11.8V4.697l-4.003 2.447c.027.562-.107 1.163-.413 1.767Zm-4.135 3.05c-1.048-.693-1.84-1.39-2.398-2.082L.19 12.856A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144L10.95 9.878c-.559.692-1.35 1.389-2.398 2.081L8 12.324l-.551-.365ZM4.416 8.91c-.306-.603-.44-1.204-.413-1.766L0 4.697v7.104l4.49-2.752a4.742 4.742 0 0 1-.074-.138Z"/><path d="M8 5.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/></svg>
+                Contact
+              </a>
+            </li>
+          </ul>
+          <hr>
+          <ul class="nav nav-pills flex-column mb-auto">
+            <% if logged_in? %>
+              <li class="nav-item">
+                <%= link_to user_path(current_user), :class => "btn btn-dark d-flex align-items-center gap-2" do %>
+                  <img src="https://content-us.teletubbies.com/uploads/2016/03/tinky-winky.png" alt="twbs" width="32" height="32" class="rounded-circle">
+                  <h6><%=current_user.first_name.capitalize%></h6>
+                <% end %>
+              </li>
+              <li class="nav-item mt-4">
+                <%= link_to "Nouveau potin", new_gossip_path, :class => "btn btn-success" %>
+              </li>
+              <li class="nav-item mt-4">
+                <%= button_to "Déconexion", session_path(session.id), method: :delete, class: 'btn btn-outline-danger' %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Connexion", new_session_path, :class => "btn btn-light" %>
+              </li>
+            <% end %>
+          </ul>
         </div>
-    </nav>
-    <%= yield %>
+        <div class="bg-light col-10">
+          <%= yield %>
+        </div>
+      </div>
+    </main>
   </body>
 </html>
